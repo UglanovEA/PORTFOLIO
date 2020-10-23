@@ -9,7 +9,7 @@ let path = {
     img: project_folder + '/img',
   },
   src: {
-    html: source_folder + '/*.html',
+    html: [source_folder + '/*.html', '!' + source_folder + '/_*.html'],
     css: source_folder + '/scss/style.scss',
     js: source_folder + '/js/main.js',
     img: source_folder + '/img/**/*.{jpg,png,svg,gif,ico,webp}',
@@ -26,8 +26,8 @@ let path = {
 let { src, dest } = require('gulp'),
   gulp = require('gulp'),
   browsersync = require('browser-sync').create(),
-  fileinclude = require('gulp-file-include');
-
+  fileinclude = require('gulp-file-include'),
+  del = require('del');
 
 function browserSync(params) {
   browsersync.init({
@@ -50,7 +50,11 @@ function watchFiles(params) {
   gulp.watch([path.watch.html], html)
 }
 
-let build = gulp.series(html);
+function clean(params) {
+  return del(path.clean);
+}
+
+let build = gulp.series(clean, html);
 let watch = gulp.parallel(build, watchFiles, browserSync);
 
 exports.html = html;
