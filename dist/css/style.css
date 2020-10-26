@@ -27,14 +27,3 @@ div {
     font-size: 20px;
   }
 }
-@supports (-webkit-appearance:none){
-.section{background:url(../img/IMG.webp) no-repeat center}
-}
-
- @media (max-width: 767px){
-
-@supports (-webkit-appearance:none){
-
-}
-
-}

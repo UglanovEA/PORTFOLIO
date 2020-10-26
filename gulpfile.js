@@ -36,10 +36,7 @@ let { src, dest } = require('gulp'),
   cleanCSS = require('gulp-clean-css'),
   rename = require("gulp-rename"),
   uglify = require('gulp-uglify-es').default,
-  imagemin = require('gulp-imagemin'),
-  webp = require('gulp-webp'),
-  webpHTML = require('gulp-webp-html'),
-  webpCss = require('gulp-webp-css');
+  imagemin = require('gulp-imagemin');
 
 function browserSync(params) {
   browsersync.init({
@@ -54,7 +51,6 @@ function browserSync(params) {
 function html() {
   return src(path.src.html)
     .pipe(fileinclude())
-    .pipe(webpHTML())
     .pipe(dest(path.build.html))
     .pipe(browsersync.stream())
 }
@@ -67,7 +63,6 @@ function css() {
       })
     )
     .pipe(group_media())
-    .pipe(webpCss())
     .pipe(
       autoprefixer({
         overrideBrowserslist: ['last 5 versions'],
@@ -97,9 +92,6 @@ function js() {
 
 function images() {
   return src(path.src.img)
-    .pipe(webp({
-      quality: 70
-    }))
     .pipe(dest(path.build.img))
     .pipe(src(path.src.img))
     .pipe(imagemin({
