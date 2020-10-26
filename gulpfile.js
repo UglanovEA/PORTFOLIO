@@ -38,7 +38,8 @@ let { src, dest } = require('gulp'),
   uglify = require('gulp-uglify-es').default,
   imagemin = require('gulp-imagemin'),
   webp = require('gulp-webp'),
-  webpHTML = require('gulp-webp-html');
+  webpHTML = require('gulp-webp-html'),
+  webpCss = require('gulp-webp-css');
 
 function browserSync(params) {
   browsersync.init({
@@ -66,6 +67,7 @@ function css() {
       })
     )
     .pipe(group_media())
+    .pipe(webpCss())
     .pipe(
       autoprefixer({
         overrideBrowserslist: ['last 5 versions'],
