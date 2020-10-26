@@ -1,3 +1,5 @@
+const autoPrefixer = require('gulp-autoprefixer');
+
 let project_folder = 'dist';
 let source_folder = 'src';
 
@@ -27,7 +29,9 @@ let { src, dest } = require('gulp'),
   gulp = require('gulp'),
   browsersync = require('browser-sync').create(),
   fileinclude = require('gulp-file-include'),
-  del = require('del');
+  del = require('del'),
+  scss = require('gulp-sass'),
+  autoprefixer = require('gulp-autoprefixer');
 
 function browserSync(params) {
   browsersync.init({
@@ -46,17 +50,36 @@ function html() {
     .pipe(browsersync.stream())
 }
 
+function css() {
+  return src(path.src.css)
+    .pipe(
+      scss({
+        outputStyle: 'expanded'
+      })
+    )
+    .pipe(
+      autoprefixer({
+        overrideBrowserslist: ['last 5 versions'],
+        cascade: true
+      })
+    )
+    .pipe(dest(path.build.css))
+    .pipe(browsersync.stream())
+}
+
 function watchFiles(params) {
-  gulp.watch([path.watch.html], html)
+  gulp.watch([path.watch.html], html);
+  gulp.watch([path.watch.css], css);
 }
 
 function clean(params) {
   return del(path.clean);
 }
 
-let build = gulp.series(clean, html);
+let build = gulp.series(clean, gulp.parallel(css, html));
 let watch = gulp.parallel(build, watchFiles, browserSync);
 
+exports.css = css;
 exports.html = html;
 exports.build = build;
 exports.watch = watch;
