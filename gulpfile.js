@@ -37,7 +37,8 @@ let { src, dest } = require('gulp'),
   rename = require("gulp-rename"),
   uglify = require('gulp-uglify-es').default,
   imagemin = require('gulp-imagemin'),
-  webp = require('gulp-webp');
+  webp = require('gulp-webp'),
+  webpHTML = require('gulp-webp-html');
 
 function browserSync(params) {
   browsersync.init({
@@ -52,6 +53,7 @@ function browserSync(params) {
 function html() {
   return src(path.src.html)
     .pipe(fileinclude())
+    .pipe(webpHTML())
     .pipe(dest(path.build.html))
     .pipe(browsersync.stream())
 }
