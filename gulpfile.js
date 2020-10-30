@@ -27,14 +27,18 @@ let { src, dest } = require('gulp'),
   gulp = require('gulp'),
   browsersync = require('browser-sync').create(),
   pug = require('gulp-pug'),
+  pugLinter = require('gulp-pug-linter'),
+  htmlValidator = require('gulp-w3c-html-validator'),
   del = require('del'),
   scss = require('gulp-sass'),
+  gulpStylelint = require('gulp-stylelint'),
   autoprefixer = require('gulp-autoprefixer'),
   gcmq = require('gulp-group-css-media-queries'),
   cleanCSS = require('gulp-clean-css'),
   shorthand = require('gulp-shorthand'),
   terser = require('gulp-terser'),
-  imagemin = require('gulp-imagemin');
+  imagemin = require('gulp-imagemin'),
+  sourcemaps = require('gulp-sourcemaps');
 
 function browserSync() {
   browsersync.init({
@@ -48,13 +52,25 @@ function browserSync() {
 
 function html() {
   return src(path.src.html)
+    .pipe(pugLinter({ reporter: 'default' }))
     .pipe(pug())
+    .pipe(htmlValidator())
     .pipe(dest(path.build.html))
     .pipe(browsersync.stream())
 }
 
 function css() {
   return src(path.src.css)
+    .pipe(gulpStylelint({
+      failAfterError: false,
+      reporters: [
+        {
+          formatter: 'string',
+          console: true
+        }
+      ]
+    }))
+    .pipe(sourcemaps.init())
     .pipe(
       scss({
         outputStyle: 'expanded'
@@ -69,6 +85,7 @@ function css() {
     )
     .pipe(cleanCSS())
     .pipe(shorthand())
+    .pipe(sourcemaps.write())
     .pipe(dest(path.build.css))
     .pipe(browsersync.stream())
 }

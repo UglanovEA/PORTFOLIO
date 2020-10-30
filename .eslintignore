@@ -1,4 +1,4 @@
 node_modules/
 .git
 .vscode
-gulpfiles.js
+gulpfile.js
