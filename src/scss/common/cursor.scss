@@ -1,0 +1,11 @@
+.cursor {
+  height: 50px;
+  width: 50px;
+  display: block;
+  border-radius: 50%;
+  border: 1px solid #f5f5f5;
+  background: transparent;
+  pointer-events: none;
+  position: fixed;
+  opacity: 0.6;
+}

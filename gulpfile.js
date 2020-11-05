@@ -9,7 +9,7 @@ let path = {
     img: project_folder + '/img',
   },
   src: {
-    html: source_folder + '/*.pug',
+    html: source_folder + '/pages/*.pug',
     css: source_folder + '/scss/style.scss',
     js: source_folder + '/js/script.js',
     img: source_folder + '/img/**/*.{jpg,png,svg,gif,ico,webp}',
@@ -31,7 +31,6 @@ let { src, dest } = require('gulp'),
   htmlValidator = require('gulp-w3c-html-validator'),
   del = require('del'),
   scss = require('gulp-sass'),
-  gulpStylelint = require('gulp-stylelint'),
   autoprefixer = require('gulp-autoprefixer'),
   gcmq = require('gulp-group-css-media-queries'),
   cleanCSS = require('gulp-clean-css'),
@@ -61,15 +60,6 @@ function html() {
 
 function css() {
   return src(path.src.css)
-    .pipe(gulpStylelint({
-      failAfterError: false,
-      reporters: [
-        {
-          formatter: 'string',
-          console: true
-        }
-      ]
-    }))
     .pipe(sourcemaps.init())
     .pipe(
       scss({

@@ -1,4 +1,4 @@
-@import '../../local_modules/normalize.css/normalize';
+@import '../../local_modules/normalize/normalize';
 
 *,
 *::before,
@@ -12,6 +12,10 @@ html {
 
 body {
   margin: 0;
+  height: auto;
+  overflow-x: hidden;
+  width: 100%;
+  background: #171717;
 }
 
 img {
