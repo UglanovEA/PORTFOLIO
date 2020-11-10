@@ -4,13 +4,17 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel="stylesheet", href="./css/style.css")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Monoton&family=Poppins:wght@500&family=Raleway:wght@300&display=swap")
     title PORTFOLIO
   body
     block cursor
       include common/cursor.pug
+    block navigation
+      include common/navigation.pug
     block header
       include common/header.pug
 
 
 
     script(src="./js/script.js")
+    script(src="./js/menu.js")
