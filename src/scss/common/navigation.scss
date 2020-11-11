@@ -1,17 +1,33 @@
 .nav {
+  height: 100px;
   width: 100%;
-  height: 120px;
-  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 80px;
+  position: relative;
+  padding: 50px 100px 0;
 }
-.nav__logo img,
-.nav-menu__logo img {
-  height: 80px;
+.nav a,
+.nav-hidden-menu__logo a {
+  margin: 0;
+  width: 85px;
+  height: 85px;
+  display: inline-block;
+  cursor: pointer;
+  color: #f5f5f5;
+  font-family: 'Monoton', cursive;
+  font-size: 42px;
+  text-align: center;
+  line-height: 80px;
+  border: 2px solid #f5f5f5;
+  border-radius: 50px;
   opacity: 0.8;
   transition: all 0.4s ease;
+}
+.nav a:hover,
+.nav-hidden-menu__logo a:hover {
+  transform: rotate(-50deg);
+  opacity: 1;
 }
 .nav__burger {
   cursor: pointer;
@@ -20,14 +36,12 @@
 }
 .nav__burger span {
   position: relative;
-  background-color: transparent;
-  height: 2px;
   width: 35px;
+  height: 2px;
   display: block;
   margin: 6px;
-  border-radius: 20px;
 }
-.first-span::before {
+.first::before {
   content: '';
   position: absolute;
   height: 100%;
@@ -37,7 +51,7 @@
   background-color: #f5f5f5;
   transition: all 0.5s ease;
 }
-.second-span::before {
+.second::before {
   content: '';
   position: absolute;
   height: 100%;
@@ -45,9 +59,9 @@
   top: 0;
   right: 0;
   background-color: #f5f5f5;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
 }
-.third-span::before {
+.third::before {
   content: '';
   position: absolute;
   height: 100%;
@@ -55,72 +69,93 @@
   top: 0;
   right: 0;
   background-color: #f5f5f5;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
 }
-.nav-menu {
+.nav__burger:hover .first::before,
+.nav__burger:hover .second::before {
+  width: 100%;
+  opacity: 1;
+}
+
+// .nav-hidden
+
+.nav-hidden {
+  width: 100%;
   height: 100vh;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
   background-color: #020202;
-  transform: translate(0px, -100%);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: -100%;
+  left: 0;
+  transition: all 0.5s ease;
+  padding: 50px 100px 0;
 }
-.translate {
-  transform: translate(0px, 0px);
-}
-.nav-menu-header {
-  width: 100%;
-  height: 120px;
+.nav-hidden-menu {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 80px;
   margin-bottom: 100px;
 }
-.nav-menu__close {
-  width: 50px;
-  display: inline-block;
+.nav-hidden-menu__close {
   cursor: pointer;
-  transition: all.3s ease;
   opacity: 0.8;
+  transition: all 0.5s ease;
+  padding: 10px;
 }
-.nav-menu__close:hover {
+.nav-hidden-menu__close:hover {
   transform: rotate(90deg);
+  opacity: 1;
 }
-.close-first-span {
-  transform: rotate(45deg);
-}
-.close-second-span {
-  transform: rotate(-45deg);
-}
-.close-first-span,
-.close-second-span {
+.close-first,
+.close-second {
   height: 2px;
   width: 35px;
   background-color: #f5f5f5;
   display: block;
-  margin: 4px;
   cursor: pointer;
-  padding: 1px;
-  border-radius: 20px;
+  margin: 4px;
 }
-.nav-menu-links-list {
+.close-first {
+  transform: rotate(45deg);
+}
+.close-second {
+  transform: rotate(-45deg);
+}
+.nav-hidden-links {
+  margin: 0;
+  padding: 0;
+  font-family: poppins;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   list-style-type: none;
 }
-.nav-menu-links-list__item {
-  padding-bottom: 20px;
-}
-.nav-menu-links-list__item a {
-  text-transform: uppercase;
-  text-decoration: none;
-  color: #f5f5f5;
+.nav-hidden-links__item {
   font-size: 30px;
-  font-family: poppins;
   opacity: 0.7;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.5s ease;
+  padding-bottom: 40px;
+  position: relative;
+}
+.nav-hidden-links__item:hover {
+  opacity: 1;
+}
+.nav-hidden-links__item a {
+  color: #f5f5f5;
+}
+.nav-hidden-links__item a::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5em;
+  font-family: 'Monoton', cursive;
+  color: rgba(245, 245, 245, 0.3);
+  letter-spacing: 20px;
   transition: all 0.4s ease;
 }

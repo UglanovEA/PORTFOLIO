@@ -1,5 +1,17 @@
 .header {
-  background: #171717;
   height: 100vh;
   width: 100%;
+  overflow: hidden;
+  position: relative;
+  animation: scale 1.5s ease;
+}
+#particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100vw;
+  background-size: cover;
+  background-position: 50% 50%;
+  display: block;
 }

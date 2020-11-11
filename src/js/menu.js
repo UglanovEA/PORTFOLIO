@@ -1,6 +1,12 @@
-const burgerMenu = document.querySelector('.nav-burger');
-const closeMenu = document.querySelector('.nav-menu__close');
+const navMenu = document.querySelector('.nav-hidden');
+const burgerBtn = document.querySelector('.nav__burger');
+const closeBtn = document.querySelector('.nav-hidden-menu__close');
 
-burgerMenu.addEventListener('click', function toggleClasses() {
 
-}
+burgerBtn.addEventListener('click', () => {
+  navMenu.style.top = '0';
+});
+closeBtn.addEventListener('click', () => {
+  navMenu.style.top = '-100%';
+});
+

@@ -11,7 +11,7 @@ let path = {
   src: {
     html: source_folder + '/pages/*.pug',
     css: source_folder + '/scss/style.scss',
-    js: source_folder + '/js/script.js',
+    js: source_folder + '/js/*.js',
     img: source_folder + '/img/**/*.{jpg,png,svg,gif,ico,webp}',
   },
   watch: {
