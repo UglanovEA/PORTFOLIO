@@ -1,4 +1,3 @@
-// cursor
 const cursor = document.querySelector('.cursor');
 const cursorRadius = Math.round(cursor.getBoundingClientRect().width / 2);
 
@@ -25,4 +24,4 @@ function animate() {
 }
 
 requestAnimationFrame(animate);
-// cursor
+

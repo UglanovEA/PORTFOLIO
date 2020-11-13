@@ -9,14 +9,12 @@ html(lang="en")
   body
     block cursor
       include common/cursor.pug
-    #particles
     block navigation
       include common/navigation.pug
     block header
       include common/header.pug
 
-
+    script(src="./js/cursor.js")
     script(src="./js/particles.min.js")
     script(src="./js/particles-main.js")
-    script(src="./js/script.js")
     script(src="./js/menu.js")
